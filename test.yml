@@ -1,0 +1,8 @@
+// contains logic that impersonates Google
+and (
+  any(ml.logo_detect(beta.message_screenshot()).brands,
+      strings.starts_with(.name, "Google")
+  )
+  or any(attachments,
+         .file_type in $file_types_images
+         and any(ml.logo_detect(.).brands, strings.starts_with(.name, "Google"))
