@@ -1,8 +1,15 @@
-// Needs to do the following; One or more of these must leverage detection methods beyond matching header/body text content, e.g., OCR, URL analysis, file analysis, etc.
-
-
-// <delivery provider> phising email. Match the logo in attachment and detect link that redirects to MS 
-type.inbound
+*name: DPD Detection - LH
+*description: Detects DPD Phishing
+references:
+ - none
+authors:
+  - twitter: string
+  - name: string
+  - github: string
+  - email: string
+type: string
+severity: string
+*source: type.inbound
 
 and
 // detect DPD logos in attached images
@@ -13,3 +20,12 @@ any(attachments,
 
 and any(body.links, strings.levenshtein(.href_url.domain.root_domain, 'dpd.com') <= 2)
 and sender.email.domain.root_domain != 'dpd.com'
+tags:
+ - string
+attack_types:
+ - Credential Phishing
+tactics_and_techniques:
+ - Impersonation: Brand
+detection_methods:
+ - File Analysis, URL Analysis
+
