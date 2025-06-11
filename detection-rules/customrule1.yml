@@ -1,5 +1,5 @@
-*name: DPD Detection - LH
-*description: Detects DPD Phishing
+name: DPD Detection - LH
+description: Detects DPD Phishing
 references:
  - none
 authors:
@@ -9,8 +9,8 @@ authors:
   - email: string
 type: string
 severity: string
-*source: type.inbound
-
+*source: 
+type.inbound
 and
 // detect DPD logos in attached images
 any(attachments,
