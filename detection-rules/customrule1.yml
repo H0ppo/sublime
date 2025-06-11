@@ -1,0 +1,15 @@
+// Needs to do the following; One or more of these must leverage detection methods beyond matching header/body text content, e.g., OCR, URL analysis, file analysis, etc.
+
+
+// <delivery provider> phising email. Match the logo in attachment and detect link that redirects to MS 
+type.inbound
+
+and
+// detect DPD logos in attached images
+any(attachments,
+    .file_type in ('png', 'jpeg', 'jpg', 'bmp', 'pdf')
+    and any(ml.logo_detect(.).brands, .name == "DPD")
+)
+
+and any(body.links, strings.levenshtein(.href_url.domain.root_domain, 'dpd.com') <= 2)
+and sender.email.domain.root_domain != 'dpd.com'
