@@ -15,7 +15,7 @@ source: |
   )
 
   and any(body.links, strings.levenshtein(.href_url.domain.root_domain, 'dpd.com') <= 2)
-  and sender.email.domain.root_dom
+  and sender.email.domain.root_domain != 'dpd.com'
 tags:
   - "DPD TEST"
 attack_types:
