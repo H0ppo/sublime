@@ -1,31 +1,30 @@
-name: DPD Detection - LH
-description: Detects DPD Phishing
+name: "DPD Detection - LH"
+description: "Detects DPD Phishing"
 references:
  - none
 authors:
-  - twitter: string
-  - name: string
-  - github: string
-  - email: string
-type: string
-severity: string
-*source: 
+  - twitter: 
+  - name: 
+  - github: 
+  - email: 
+type: 
+severity: 
+*source: |
 type.inbound
 and
-// detect DPD logos in attached images
 any(attachments,
     .file_type in ('png', 'jpeg', 'jpg', 'bmp', 'pdf')
     and any(ml.logo_detect(.).brands, .name == "DPD")
-)
-
+   )
 and any(body.links, strings.levenshtein(.href_url.domain.root_domain, 'dpd.com') <= 2)
 and sender.email.domain.root_domain != 'dpd.com'
+
 tags:
- - string
+ - "test"
 attack_types:
- - Credential Phishing
+ - "Credential Phishing"
 tactics_and_techniques:
  - Impersonation: Brand
 detection_methods:
- - File Analysis, URL Analysis
+ - "File Analysis, URL Analysis"
 
