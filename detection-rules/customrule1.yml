@@ -24,7 +24,7 @@ tags:
 attack_types:
  - "Credential Phishing"
 tactics_and_techniques:
- - Impersonation: Brand
+ - "Impersonation: Brand"
 detection_methods:
  - "File Analysis, URL Analysis"
 
