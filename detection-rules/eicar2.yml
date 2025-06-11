@@ -12,16 +12,13 @@ authors:
 severity: "low"
 source: |
   type.inbound
-  and any(attachments, strings.icontains(.file_name, "eicar"))
   and any(attachments,
-          any(file.explode(.),
-              any(.scan.strings.strings,
-                  strings.icontains(.,
-                                    'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*'
-                  )
-              )
-          )
+    .file_type in ('png', 'jpeg', 'jpg', 'bmp', 'pdf')
+    and any(ml.logo_detect(.).brands, .name == "DPD")
   )
+
+  and any(body.links, strings.levenshtein(.href_url.domain.root_domain, 'dpd.com') <= 2)
+  and sender.email.domain.root_dom
 tags:
   - "EICAR"
 attack_types:
