@@ -1,7 +1,6 @@
 name: "DPD Detection - LH"
 description: "Detects DPD Phishing"
 references:
- - none
 authors:
   - twitter: 
   - name: 
