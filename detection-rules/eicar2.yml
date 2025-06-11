@@ -1,4 +1,4 @@
-name: "Attachment: EICAR String Present"
+name: "DPD Logo Detection in Attachment & Domain analysis"
 description: |
   This rule detects the EICAR test string, used to evaluate Anti-Virus scanning and file inspection capabilities.
 
@@ -7,7 +7,7 @@ references:
   -
 type: "rule"
 authors:
-  - twitter: "ajpc500"
+  - twitter: "H0ppo"
 severity: "low"
 source: |
   type.inbound
@@ -19,9 +19,9 @@ source: |
   and any(body.links, strings.levenshtein(.href_url.domain.root_domain, 'dpd.com') <= 2)
   and sender.email.domain.root_dom
 tags:
-  - "EICAR"
+  - "DPD TEST"
 attack_types:
-  - "Malware/Ransomware"
+  - "Credential Phishing"
 detection_methods:
-  - "File analysis"
+  - "URL analysis, Computer Vision"
 id: "592e2319-9e4f-5e3d-9b34-22259ddc3416"
