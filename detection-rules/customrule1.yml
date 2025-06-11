@@ -8,7 +8,7 @@ authors:
   - email: 
 type: 
 severity: 
-*source: |
+source: |
 type.inbound
 and
 any(attachments,
